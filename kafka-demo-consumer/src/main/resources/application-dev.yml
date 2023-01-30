@@ -1,0 +1,12 @@
+server:
+  port: 8081
+
+spring:
+  kafka:
+    bootstrap-servers: 192.168.8.72:9092,192.168.8.73:9094,192.168.8.76:9093
+    producer:
+      value-serializer: org.apache.kafka.common.serialization.ByteArraySerializer
+    consumer:
+      value-deserializer: org.apache.kafka.common.serialization.ByteArrayDeserializer
+      auto-offset-reset: earliest
+

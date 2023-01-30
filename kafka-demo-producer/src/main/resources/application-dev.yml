@@ -1,0 +1,32 @@
+server:
+  port: 8080
+
+spring:
+  kafka:
+    bootstrap-servers: 192.168.8.72:9092,192.168.8.73:9094,192.168.8.76:9093
+    producer:
+      acks: all
+      retries: 1
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+#      value-serializer: org.apache.kafka.common.serialization.ByteArraySerializer
+      properties:
+        request:
+          timeout:
+            ms: 100
+        enable:
+          idempotence: true
+        max:
+          in:
+            flight:
+              requests:
+                per:
+                connection: 5
+#    consumer:
+#      value-deserializer: org.apache.kafka.common.serialization.ByteArrayDeserializer
+#      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+#      auto-offset-reset: earliest
+    admin:
+      properties:
+        min:
+          insync:
+            replicas: 2
